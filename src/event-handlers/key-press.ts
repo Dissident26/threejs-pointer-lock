@@ -1,4 +1,4 @@
-import { KeyboardController } from '../controllers/keyboard-controller';
+import { KeyboardController } from '../controllers';
 import { Key, keySettings } from '../settings';
 
 export const handleKeyPress = (keyboardController: KeyboardController) => {

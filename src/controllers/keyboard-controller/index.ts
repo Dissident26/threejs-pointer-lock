@@ -1,1 +1,1 @@
-export * from '../keyboard-controller';
+export * from './keyboard-controller';
