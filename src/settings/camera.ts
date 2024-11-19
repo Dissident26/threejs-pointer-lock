@@ -1,6 +1,6 @@
 export const cameraSettings = {
-  fov: 70,
+  fov: 75,
   aspectRatio: window.innerWidth / window.innerHeight,
-  near: 0.01,
-  far: 2,
+  near: 1,
+  far: 1000,
 };
