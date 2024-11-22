@@ -3,4 +3,5 @@ export const cameraSettings = {
   aspectRatio: window.innerWidth / window.innerHeight,
   near: 1,
   far: 1000,
+  positionZ: 10,
 };

@@ -13,7 +13,7 @@ export const createSceneBase = () => {
   const floorMaterial = new MeshBasicMaterial({ color: 'black' });
   const floor = new Mesh(floorGeometry, floorMaterial);
 
-  // floorGeometry.rotateX(-Math.PI / 2);
+  floorGeometry.rotateX(-Math.PI / 2);
 
   scene.add(light, floor);
 

@@ -2,12 +2,16 @@ import { Camera } from 'three';
 import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
 
 import { handlePointerLock } from '../../event-handlers';
+import { cameraSettings } from '../../settings';
 
 export class MouseController {
   controls: PointerLockControls;
 
   constructor(camera: Camera, domElement?: HTMLElement) {
     const controls = new PointerLockControls(camera, domElement);
+
+    controls.getObject().position.y = cameraSettings.positionZ;
+
     handlePointerLock(controls);
 
     this.controls = controls;
