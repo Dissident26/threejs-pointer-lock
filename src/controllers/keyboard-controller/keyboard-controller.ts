@@ -1,5 +1,5 @@
 import { Key } from '../../settings';
-import { handleKeyPress } from '../../event-handlers';
+import { handleKeyPressEvents } from '../../event-handlers';
 
 export class KeyboardController {
   [Key.UP] = false;
@@ -8,7 +8,7 @@ export class KeyboardController {
   [Key.RIGHT] = false;
 
   constructor() {
-    handleKeyPress(this);
+    handleKeyPressEvents(this);
   }
 }
 

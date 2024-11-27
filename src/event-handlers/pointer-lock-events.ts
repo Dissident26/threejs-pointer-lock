@@ -1,6 +1,6 @@
 import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
 
-export const handlePointerLock = (controls: PointerLockControls) => {
+export const handlePointerLockEvents = (controls: PointerLockControls) => {
   const menuElement = document.getElementById('menu');
 
   menuElement?.addEventListener('click', () => {

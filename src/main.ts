@@ -3,8 +3,8 @@ import { WebGLRenderer } from 'three';
 import './style.css';
 
 import { createPerspectiveCamera, createSceneBase } from './objects';
-import { handleWindowResize } from './event-handlers';
-import { MouseController } from './controllers';
+import { handleWindowResizeEvents } from './event-handlers';
+import { keyboardController, MouseController } from './controllers';
 
 const app = document.getElementById('app')!;
 const renderer = new WebGLRenderer({ antialias: true, alpha: true });
@@ -15,13 +15,17 @@ app.append(renderer.domElement);
 
 const scene = createSceneBase();
 const camera = createPerspectiveCamera();
-const controls = new MouseController(camera, renderer.domElement);
+const pointerControls = new MouseController(camera, renderer.domElement);
 
-handleWindowResize(camera, renderer);
+handleWindowResizeEvents(camera, renderer);
 
-scene.add(camera, controls.object);
+scene.add(camera, pointerControls.object);
 
 const animate = () => {
+  if (pointerControls.isLocked) {
+    pointerControls.handleKeyPress(keyboardController);
+  }
+
   renderer.render(scene, camera);
 };
 

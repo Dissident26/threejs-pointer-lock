@@ -1,18 +1,20 @@
-import { Camera } from 'three';
+import { Camera, Vector3 } from 'three';
 import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
 
-import { handlePointerLock } from '../../event-handlers';
-import { cameraSettings } from '../../settings';
+import { handlePointerLockEvents } from '../../event-handlers';
+import { cameraSettings, Key, playerSettings } from '../../settings';
+import { KeyboardController } from '../keyboard-controller';
 
 export class MouseController {
   controls: PointerLockControls;
+  direction = new Vector3();
 
   constructor(camera: Camera, domElement?: HTMLElement) {
     const controls = new PointerLockControls(camera, domElement);
 
     controls.getObject().position.y = cameraSettings.positionZ;
 
-    handlePointerLock(controls);
+    handlePointerLockEvents(controls);
 
     this.controls = controls;
   }
@@ -52,5 +54,22 @@ export class MouseController {
    */
   public get object() {
     return this.controls.getObject();
+  }
+
+  public handleKeyPress(keyboardController: KeyboardController) {
+    const speed = playerSettings.baseSpeed;
+
+    if (keyboardController[Key.UP]) {
+      this.moveVertical(speed);
+    }
+    if (keyboardController[Key.DOWN]) {
+      this.moveVertical(-speed);
+    }
+    if (keyboardController[Key.LEFT]) {
+      this.moveHorizontal(-speed);
+    }
+    if (keyboardController[Key.RIGHT]) {
+      this.moveHorizontal(speed);
+    }
   }
 }

@@ -1,3 +1,3 @@
-export * from './window-resize';
-export * from './key-press';
-export * from './pointer-lock';
+export * from './window-resize-events';
+export * from './key-press-events';
+export * from './pointer-lock-events';

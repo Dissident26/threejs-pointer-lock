@@ -1,7 +1,7 @@
 import { KeyboardController } from '../controllers';
 import { Key, keySettings } from '../settings';
 
-export const handleKeyPress = (keyboardController: KeyboardController) => {
+export const handleKeyPressEvents = (keyboardController: KeyboardController) => {
   document.onkeydown = (event) => {
     switch (event.code) {
       case keySettings[Key.UP]: {
