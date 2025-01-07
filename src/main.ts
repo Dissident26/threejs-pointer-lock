@@ -3,8 +3,9 @@ import { WebGLRenderer } from 'three';
 import './style.css';
 
 import { createPerspectiveCamera, createPlayer, createSceneBase } from './objects';
-import { handleWindowResizeEvents } from './event-handlers';
+import { handleWindowResizeEvents, WebSocketEventHandler } from './event-handlers';
 import { keyboardController, MouseController } from './controllers';
+import { socket } from './api';
 
 const app = document.getElementById('app')!;
 const renderer = new WebGLRenderer({ antialias: true, alpha: true });
@@ -22,6 +23,10 @@ handleWindowResizeEvents(camera, renderer);
 const player = await createPlayer();
 
 scene.add(camera, pointerControls.object, player);
+
+const wsHandler = new WebSocketEventHandler(scene, socket);
+
+socket.onAny(wsHandler.handleWebSocketEvents);
 
 const animate = () => {
   if (pointerControls.isLocked) {
