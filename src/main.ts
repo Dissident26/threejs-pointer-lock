@@ -2,7 +2,7 @@ import { WebGLRenderer } from 'three';
 
 import './style.css';
 
-import { createPerspectiveCamera, createSceneBase } from './objects';
+import { createPerspectiveCamera, createPlayer, createSceneBase } from './objects';
 import { handleWindowResizeEvents } from './event-handlers';
 import { keyboardController, MouseController } from './controllers';
 
@@ -19,7 +19,9 @@ const pointerControls = new MouseController(camera, renderer.domElement);
 
 handleWindowResizeEvents(camera, renderer);
 
-scene.add(camera, pointerControls.object);
+const player = await createPlayer();
+
+scene.add(camera, pointerControls.object, player);
 
 const animate = () => {
   if (pointerControls.isLocked) {
